@@ -33,4 +33,11 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+app.use(function(req, res, next) {
+   res.header("Access-Control-Allow-Origin", "*");
+   next();
+ });
 
+if(process.env.NODE_ENV === 'production'){
+   app.use(express.static('client/build'))
+ }
